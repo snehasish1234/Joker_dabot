@@ -9,6 +9,4 @@ py_translator
 bs4
 lxml
 pyowm
-spongemock
 geopy
-PyLyrics

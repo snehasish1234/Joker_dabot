@@ -19,6 +19,9 @@ from tg_bot.modules.helper_funcs.filters import CustomFilters
 from tg_bot.modules.rextester.api import Rextester, CompilerError
 from tg_bot.modules.rextester.langs import languages
 
+from geopy.geocoders import Nominatim
+from telegram import Location
+
 RUN_STRINGS = (
     "Do you really think you are smart?",
     "Huh? what? did they get away?",
@@ -445,6 +448,27 @@ def execute(bot: Bot, update: Update, args: List[str]):
 
     message.reply_text(output, parse_mode=ParseMode.MARKDOWN)
 
+def gps(bot: Bot, update: Update, args: List[str]):
+    message = update.effective_message
+    if len(args) == 0:
+        update.effective_message.reply_text("That was a funny joke, but no really, put in a location")
+    try:
+        geolocator = Nominatim(user_agent="SkittBot")
+        location = " ".join(args)
+        geoloc = geolocator.geocode(location)  
+        chat_id = update.effective_chat.id
+        lon = geoloc.longitude
+        lat = geoloc.latitude
+        the_loc = Location(lon, lat) 
+        gm = "https://www.google.com/maps/search/{},{}".format(lat,lon)
+        bot.send_location(chat_id, location=the_loc)
+        update.message.reply_text("Open with: [Google Maps]({})".format(gm), parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+    except AttributeError:
+        update.message.reply_text("I can't find that")
+
+
+
+
 # /ip is for private use
 __help__ = """
 An "odds and ends" module for small, simple commands which don't really fit anywhere
@@ -472,6 +496,7 @@ INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 PING_HANDLER = DisableAbleCommandHandler("ping", ping)
 ECHO_HANDLER = CommandHandler("echo", echo, filters=CustomFilters.sudo_filter)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
+GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
 
 STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
 EXECUTE_HANDLER = CommandHandler("exec", execute, pass_args=True, filters=CustomFilters.sudo_filter)
@@ -486,4 +511,5 @@ dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(EXECUTE_HANDLER)
+dispatcher.add_handler(GPS_HANDLER)
 dispatcher.add_handler(DisableAbleCommandHandler("removebotkeyboard", reply_keyboard_remove))
