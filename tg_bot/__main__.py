@@ -19,18 +19,14 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @MarieSupport.
+Hey {}, my name is {}! If you have any questions on how to use me, read /help - and then Join @JokerHarleyNews.
 
-I'm a group manager bot built in python3, using the python-telegram-bot library, and am fully opensource; \
-you can find what makes me tick [here](github.com/PaulSonOfLars/tgbot)!
-
-Feel free to submit pull requests on github, or to contact my support group, @MarieSupport, with any bugs, questions \
-or feature requests you might have :)
-I also have a news channel, @MarieNews for announcements on new features, downtime, etc.
+I'm a group manager bot maintained by [this guy](tg://user?id={}).
+and am fully Open-source you can find what makes me tick [here](github.com/Yasir-siddiqui/Joker_dabot)!
 
 You can find the list of available commands with /help.
-
 If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!
+[Click here to add me in your groups](https://telegram.me/Joker_dabot?startgroup=add)
 """
 
 HELP_STRINGS = """
@@ -39,8 +35,8 @@ I'm a modular group management bot with a few fun extras! Have a look at the fol
 the things I can help you with.
 
 *Main* commands available:
- - /start: start the bot
- - /help: PM's you this message.
+ - /start: start the Bot :D
+ - /help: Pm's You This Message.
  - /help <module name>: PM's you info about that module.
  - /donate: information about how to donate!
  - /settings:
@@ -51,11 +47,9 @@ the things I can help you with.
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
-It took lots of work for my creator to get me to where I am now, and every donation helps \
-motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
-(see his bio!). He's just a poor student, so every little helps!
-There are two ways of paying him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
+DONATE_STRING = """Heya, glad to hear you want to donate :D
+If you want to donate, PM [YasiR Siddiqui](t.me/Yasirsiddiqui), and ask about donation. \
+If you really want to donate, it could really help me to upgrade my VPS."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -147,7 +141,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text("Yo, whadup?")
+        update.effective_message.reply_text("Existence Alert!!")
 
 
 # for test purposes
