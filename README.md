@@ -20,7 +20,7 @@ Alternatively, [find me on telegram](https://t.me/YasirSiddiqui)!.
 
 Once you've setup your database and your configuration (see below) is complete, simply run:
 
-`python3 -m tg_bot` or `python -m tg_bot`
+`python3 -m tg_bot`
 
 
 ## Setting up the bot (Read this before trying to use!):
