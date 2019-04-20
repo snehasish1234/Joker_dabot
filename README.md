@@ -1,7 +1,7 @@
 # Joker
 
 
- [![Build Status](https://travis-ci.com/Yasir-siddiqui/Joker_dabot.svg?branch=modular)](https://travis-ci.com/Yasir-siddiqui/Joker_dabot)
+ [![Build Status](https://travis-ci.com/Yasir-siddiqui/Joker_dabot.svg?branch=master)](https://travis-ci.com/Yasir-siddiqui/Joker_dabot)
 
 A modular telegram Python bot running on python3 with an sqlalchemy database.
 
