@@ -1,22 +1,17 @@
-import subprocess
 import html
 import json
-import random
 import time
 import pyowm
 from pyowm import timeutils, exceptions
-from datetime import datetime
 from typing import Optional, List
-from pythonping import ping as ping3
 from typing import Optional, List
-from hurry.filesize import size
 
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 
-from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS, BAN_STICKER, LOGGER
+from tg_bot import dispatcher, LOGGER
 from tg_bot.__main__ import STATS, USER_INFO
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.extraction import extract_user
